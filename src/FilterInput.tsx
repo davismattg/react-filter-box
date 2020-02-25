@@ -54,6 +54,7 @@ export default class FilterInput extends React.Component<any, any> {
     }
 
     private onSubmit(text: string) {
+      console.log(`onSubmit: ${text}`);
         if (this.props.onSubmit) {
             this.props.onSubmit(text);
         }
@@ -95,6 +96,7 @@ export default class FilterInput extends React.Component<any, any> {
         })
 
         ref.editor.on("keyup", (cm: ExtendedCodeMirror, e?: KeyboardEvent) => {
+          console.log(`keyup: ${this.doc.getValue()}`);
             if (e.keyCode == 13) {
                 this.onSubmit(this.doc.getValue());
             }
