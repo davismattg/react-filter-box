@@ -46,9 +46,9 @@ export default class ReactFilterBox extends React.Component<any, any> {
 
     onSubmit(query: string) {
         var result = this.parser.parse(query);
-        if ((result as ParsedError).isError) {
-            return this.props.onParseError(result);
-        }
+        // if ((result as ParsedError).isError) {
+        //     return this.props.onParseError(result);
+        // }
 
         return this.props.onParseOk(result);
     }
