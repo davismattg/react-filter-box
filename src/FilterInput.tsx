@@ -20,8 +20,10 @@ export default class FilterInput extends React.Component<any, any> {
 
     public static defaultProps: any = {
         onBlur: () => { },
+        onClear: () => { },
         onFocus: () => { },
-        editorConfig: { }
+        editorConfig: { },
+        showClearButton: { }
     };
 
     constructor(props: any) {
@@ -44,6 +46,11 @@ export default class FilterInput extends React.Component<any, any> {
         }
     }
 
+    onClear(element: any) {
+      element.preventDefault();
+      this.doc.setValue("");
+      this.props.onClear();
+    }
 
     private handlePressingAnyCharacter() {
         if (this.autoCompletePopup.completionShow) {
@@ -107,11 +114,18 @@ export default class FilterInput extends React.Component<any, any> {
 
     render() {
         return (
-            <ReactCodeMirror
-                ref={this.codeMirrorRef.bind(this)}
-                onChange={this.handleEditorChange.bind(this)}
-                options={this.options}
-                value={this.props.value} />
+            <div className="d-flex">
+              <div className="flex-grow-1">
+                <ReactCodeMirror
+                    ref={this.codeMirrorRef.bind(this)}
+                    onChange={this.handleEditorChange.bind(this)}
+                    options={this.options}
+                    value={this.props.value} />
+              </div>
+              <div className="">
+                {this.props.showClearButton ? <a href="" className="ml-3 mt-1" onClick={(e) => {this.onClear(e)}}>Clear</a> : ''}
+              </div>
+            </div>
         );
     }
 }

@@ -16,11 +16,13 @@ export default class ReactFilterBox extends React.Component<any, any> {
         onParseOk: () => { },
         onParseError: () => { },
         onChange: () => { },
+        onClear: () => { },
         onDataFiltered: () => { },
         autoCompleteHandler: null,
         onBlur: () => { },
         onFocus: () => { },
-        editorConfig: { }
+        editorConfig: { },
+        showClearButton: { }
     };
 
     parser = new FilterQueryParser();
@@ -64,6 +66,10 @@ export default class ReactFilterBox extends React.Component<any, any> {
         this.props.onChange(query, result);
     }
 
+    onClear() {
+      this.props.onClear();
+    }
+
     onBlur() {
         this.setState({ isFocus: false });
     }
@@ -81,18 +87,22 @@ export default class ReactFilterBox extends React.Component<any, any> {
             className += " error"
         }
 
-        return <div className={className}>
+        return (
+          <div className={className}>
             <FilterInput
-                autoCompletePick={this.props.autoCompletePick}
-                customRenderCompletionItem={this.props.customRenderCompletionItem}
-                onBlur={this.onBlur.bind(this)}
-                onFocus={this.onFocus.bind(this)}
-                value={this.props.query}
-                needAutoCompleteValues={this.needAutoCompleteValues.bind(this)}
-                onSubmit={this.onSubmit.bind(this)}
-                onChange={this.onChange.bind(this)}
-                editorConfig={this.props.editorConfig} />
-        </div>
+              autoCompletePick={this.props.autoCompletePick}
+              customRenderCompletionItem={this.props.customRenderCompletionItem}
+              onBlur={this.onBlur.bind(this)}
+              onFocus={this.onFocus.bind(this)}
+              onClear={this.onClear.bind(this)}
+              value={this.props.query}
+              needAutoCompleteValues={this.needAutoCompleteValues.bind(this)}
+              onSubmit={this.onSubmit.bind(this)}
+              onChange={this.onChange.bind(this)}
+              editorConfig={this.props.editorConfig}
+              showClearButton={this.props.showClearButton} />
+          </div>
+        )
     }
 }
 
