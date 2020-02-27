@@ -122,8 +122,8 @@ export default class FilterInput extends React.Component<any, any> {
                     options={this.options}
                     value={this.props.value} />
               </div>
-              <div className="">
-                {this.props.showClearButton ? <a href="" className="ml-3 mt-1" onClick={(e) => {this.onClear(e)}}>Clear</a> : ''}
+              <div className="align-self-center">
+                {this.props.showClearButton ? <a href="" className="" onClick={(e) => {this.onClear(e)}}>Clear</a> : ''}
               </div>
             </div>
         );
