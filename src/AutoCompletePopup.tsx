@@ -28,6 +28,9 @@ export default class AutoCompletePopup {
         if (!_.isString(value)) {
             return value;
         }
+
+        // value = value.replace(/\"/g, "");
+
         if (grammarUtils.needSpaceAfter(value as string)) {
             return value + " ";
         }
